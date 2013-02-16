@@ -8,6 +8,7 @@ public class FrisbeeSimulation {
     public static final double GRAVITY = -9.81; // m/s^2
     // Mass of the frisbee
     public static final double FRISBEE_MASS = 0.175; // kg
+    public static final double INVERSE_FRISBEE_MASS = 1.0/FRISBEE_MASS; // kg^-1
     // Rotational inertia about nonsymmetric axis
     public static final double NONSYMMETRIC_ROTATIONAL_INERTIA = .00095016; // kg m^2
     // Rotational inertia about symmetric axis
@@ -49,6 +50,17 @@ public class FrisbeeSimulation {
             forceLift = new Vector(new double[] {forceLiftFrisbeeXComponent * Math.sin(horizontalAngleOfVelocity) + forceLiftFrisbeeYComponent * Math.cos(horizontalAngleOfVelocity),
                                                  -forceLiftFrisbeeXComponent * Math.cos(horizontalAngleOfVelocity) + forceLiftFrisbeeYComponent * Math.sin(horizontalAngleOfVelocity),
                                                  forceLiftFrisbeeZComponent});
+            
+            double forceDragMagnitude = 0.5 * DENSITY_OF_AIR * velocityMagnitude * velocityMagnitude * AREA_OF_FRISBEE * coefficientOfDrag;
+            double forceDragFrisbeeXComponent = -forceDragMagnitude * Math.sin(angleOfRollAboutVelocity);
+            double forceDragFrisbeeYComponent = -forceDragMagnitude * Math.cos(angleOfRollAboutVelocity) * Math.cos(angleOfAttackFromHorizontal);
+            double forceDragFrisbeeZComponent = forceDragMagnitude * Math.cos(angleOfRollAboutVelocity) * Math.sin(angleOfAttackFromHorizontal);
+            forceDrag = new Vector(new double[] {forceDragFrisbeeXComponent * Math.sin(horizontalAngleOfVelocity) + forceDragFrisbeeYComponent * Math.cos(horizontalAngleOfVelocity),
+                                                 -forceDragFrisbeeXComponent * Math.cos(horizontalAngleOfVelocity) + forceDragFrisbeeYComponent * Math.sin(horizontalAngleOfVelocity),
+                                                 forceDragFrisbeeZComponent});
+            
+            force = forceLift.add(forceDrag).add(forceGravity);
+            acceleration = force.scale(INVERSE_FRISBEE_MASS);
         }
     }
 }
