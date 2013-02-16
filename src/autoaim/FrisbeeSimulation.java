@@ -28,7 +28,8 @@ public class FrisbeeSimulation {
     public static interface FrisbeeSimulationClient {
         public boolean registerDisplacement(Vector displacement); // Return true if we should keep simulating, false if we should stop
     }
-    public static void simulateFrisbee(FrisbeeSimulationClient client, Vector displacement, Vector velocity, double angleOfAttackFromHorizontal, double angleOfRollFromHorizontal, double deltaTime) { // All angles are in radians, positive angle of roll is when the frisbee is banking left
+    public static void simulateFrisbee(FrisbeeSimulationClient client, Vector displacement, Vector velocity, double angleOfAttackFromHorizontal, double angleOfRollAboutVelocity,                                                              double deltaTime) {
+                                // The client asking for a simulation,initial displacement,initial velocity,initial angle of attack from horiz., initial angle of roll about velocity (positive is counterclockwise from robot's perspective), change in time between steps where lower increases accuracy
         Vector acceleration = null;
         Vector force = null;
             Vector forceGravity = new Vector(new double[] {0, 0, GRAVITY * FRISBEE_MASS});
@@ -41,8 +42,13 @@ public class FrisbeeSimulation {
             
             double velocityMagnitude = velocity.magnitude();
             double forceLiftMagnitude = 0.5 * DENSITY_OF_AIR * velocityMagnitude * velocityMagnitude * AREA_OF_FRISBEE * coefficientOfLift;
-            double forceLiftFrisbeeXComponent = 
-            forceLift = new Vector(new double[] {});
+            double forceLiftFrisbeeXComponent = -forceLiftMagnitude * Math.sin(angleOfRollAboutVelocity);
+            double forceLiftFrisbeeYComponent = -forceLiftMagnitude * Math.cos(angleOfRollAboutVelocity) * Math.sin(angleOfAttackFromHorizontal);
+            double forceLiftFrisbeeZComponent = forceLiftMagnitude * Math.cos(angleOfRollAboutVelocity) * Math.cos(angleOfAttackFromHorizontal);
+            double horizontalAngleOfVelocity = MathUtils.atan2(velocity.getElement(1), velocity.getElement(0));
+            forceLift = new Vector(new double[] {forceLiftFrisbeeXComponent * Math.sin(horizontalAngleOfVelocity) + forceLiftFrisbeeYComponent * Math.cos(horizontalAngleOfVelocity),
+                                                 -forceLiftFrisbeeXComponent * Math.cos(horizontalAngleOfVelocity) + forceLiftFrisbeeYComponent * Math.sin(horizontalAngleOfVelocity),
+                                                 forceLiftFrisbeeZComponent});
         }
     }
 }
