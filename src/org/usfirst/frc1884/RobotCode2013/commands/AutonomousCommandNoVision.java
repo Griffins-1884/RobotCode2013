@@ -5,8 +5,8 @@ import org.usfirst.frc1884.RobotCode2013.Robot;
 /**
  * This is the default autonomous command
  */
-public class  AutonomousCommand extends Command {
-    public AutonomousCommand() {
+public class  AutonomousCommandNoVision extends Command {
+    public AutonomousCommandNoVision() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	
@@ -27,7 +27,10 @@ public class  AutonomousCommand extends Command {
     }
     
     protected boolean driveBackwardsUntilLine() {
-        if(Robot.chassis.getFrontLightSensor())
+        if(Robot.chassis.getFrontLightSensor()) {
+            return true;
+        }
+        return false;
     }
     
     protected void shootAutonomous(double secondWheel1) {
