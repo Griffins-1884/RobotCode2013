@@ -53,7 +53,8 @@ public class ShootingPitchControl extends Subsystem implements PIDSource, PIDOut
     
     public double getShooterAngle() {
         double winchLength = pidGet();
-        
+        double triangleAngle = (SHOOTING_TRIANGLE_TOP_SIDE_LENGTH * SHOOTING_TRIANGLE_TOP_SIDE_LENGTH + SHOOTING_TRIANGLE_BOTTOM_SIDE_LENGTH * SHOOTING_TRIANGLE_BOTTOM_SIDE_LENGTH - winchLength * winchLength) / (2 * SHOOTING_TRIANGLE_TOP_SIDE_LENGTH * SHOOTING_TRIANGLE_BOTTOM_SIDE_LENGTH);
+        return triangleAngle + SHOOTING_TRIANGLE_TOP_SIDE_ANGLE_TO_SHOOTER - SHOOTING_TRIANGLE_BOTTOM_SIDE_ANGLE_TO_FLOOR;
     }
     
     public static final double WINCH_DIAMETER = 0.0115; // in meters
