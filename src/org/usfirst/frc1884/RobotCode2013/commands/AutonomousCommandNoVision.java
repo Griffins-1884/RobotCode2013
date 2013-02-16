@@ -22,12 +22,35 @@ public class  AutonomousCommandNoVision extends Command {
     protected void execute() {
         shootAutonomous(1);
         if(!driveBackwardsUntilLine()) {} else {
-            
+            driveOnLine();
         }
     }
     
+    boolean lastFoundFront = false;
+    
+    protected void driveOnLine() {
+        if (Robot.chassis.getFrontLightSensor()&&Robot.chassis.getBackLightSensor()) {
+            Robot.chassis.driveMecanumNormalized(0, 0.5, 0);
+        } else if (Robot.chassis.getFrontLightSensor()) {
+            lastFoundFront = true;
+            Robot.chassis.driveMecanumNormalized(0.5, 0, 0.1);
+        } else if (Robot.chassis.getBackLightSensor()) {
+            lastFoundFront = false;
+            Robot.chassis.driveMecanumNormalized(0.5, 0, -0.1);
+        } else {
+            if (lastFoundFront) {
+                Robot.chassis.driveMecanumNormalized(0.5, 0, 0.1);
+            } else {
+                Robot.chassis.driveMecanumNormalized(0.5, 0, -0.1);
+            }
+        }
+    }
+    
+    protected boolean lineFound = false;
+    
     protected boolean driveBackwardsUntilLine() {
-        if(Robot.chassis.getFrontLightSensor()) {
+        if(Robot.chassis.getBackLightSensor()||lineFound) {
+            lineFound = true;
             return true;
         }
         return false;
