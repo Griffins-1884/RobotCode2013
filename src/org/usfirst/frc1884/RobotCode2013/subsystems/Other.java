@@ -37,7 +37,7 @@ public class Other extends Subsystem {
         sensorTable.putNumber("gyroValue", gyro.getAngle() - gyroAngleZero);
         sensorTable.putNumber("forwardsAcceleration", accelerometer.getAcceleration(ADXL345_I2C.Axes.kY));
         sensorTable.putNumber("leftwardsAcceleration", -accelerometer.getAcceleration(ADXL345_I2C.Axes.kX));
-        //sensorTable.putNumber("shooterAngle", Robot.shootingPitchControl.calculateShooterAngleFromEncoder());
+        sensorTable.putNumber("shooterAngle", Robot.shootingPitchControl.getShooterAngle());
         sensorTable.putBoolean("frontLightSensor", Robot.chassis.getFrontLightSensor());
         sensorTable.putBoolean("backLightSensor", Robot.chassis.getBackLightSensor());
     }

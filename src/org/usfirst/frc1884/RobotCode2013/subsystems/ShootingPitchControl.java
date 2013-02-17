@@ -68,6 +68,8 @@ public class ShootingPitchControl extends Subsystem implements PIDSource, PIDOut
     }
     
     public void setPitchChangeSpeed(double value) { // Positive values move the shooter up
+        System.out.println("motor: " + value);
+        System.out.println("pid: " + pidController.isEnable());
         pitchControlMotor.set(value);
     }
 }

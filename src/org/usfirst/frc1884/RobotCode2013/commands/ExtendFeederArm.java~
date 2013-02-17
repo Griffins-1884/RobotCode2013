@@ -36,13 +36,13 @@ public class  ExtendFeederArm extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.feeder.retractArm();
-        Robot.feeder.setFeederIntakeSpeed(0.0);
+        Robot.feeder.armOff();
+        Robot.feeder.setFeederIntakeSpeed(1.0);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        Robot.feeder.retractArm();
-        Robot.feeder.setFeederIntakeSpeed(0.0);
+        Robot.feeder.armOff();
+        Robot.feeder.setFeederIntakeSpeed(1.0);
     }
 }

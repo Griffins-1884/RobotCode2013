@@ -23,6 +23,7 @@ public class RobotMap {
     public static DigitalInput chassisFrontLightSensor;
     public static DigitalInput chassisBackLightSensor;
     public static SpeedController feederFeederIntake;
+    public static SpeedController feederFeederArmMotor;
     public static DoubleSolenoid climberLeftClimbingPiston;
     public static DoubleSolenoid climberRightClimbingPiston;
     public static Compressor otherCompressor;
@@ -59,6 +60,9 @@ public class RobotMap {
         
         feederFeederIntake = new Talon(1, 10);
 	LiveWindow.addActuator("Feeder", "Feeder Intake", (Talon) feederFeederIntake);
+        
+        feederFeederArmMotor = new Talon(1, 7);
+	LiveWindow.addActuator("Feeder", "Feeder Arm Motor", (Talon) feederFeederArmMotor);
         
         climberLeftClimbingPiston = new DoubleSolenoid(1, 1, 2);      
 	

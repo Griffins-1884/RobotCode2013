@@ -14,7 +14,8 @@ public interface Controller2013 {
     public static final int SHOOTER_FIRE = 1,
                             FEEDER_INTAKE = 2,
                             CLIMBER_EXTEND = 4,
-                            AUTOAIM_TRACK = 5;
+                            AUTOAIM_TRACK = 5,
+                            EXTRA_BUTTON_1 = 6;
     
     public double getAnalog(int analogConstant);
     public boolean getBoolean(int digitalConstant);

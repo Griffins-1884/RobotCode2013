@@ -11,6 +11,7 @@ public class XboxController2013 extends XboxController implements Controller2013
             case Controller2013.DRIVE_COUNTERCLOCKWISE:
                 return this.getRightX();
             case Controller2013.SHOOTER_PITCH:
+                System.out.println(this.getRightY());
                 return this.getRightY();
             case Controller2013.SHOOTER_SPEED:
                 return Math.max(this.getTriggerValue(), 0);
@@ -28,6 +29,8 @@ public class XboxController2013 extends XboxController implements Controller2013
                 return this.getLeftUpperTrigger();
             case Controller2013.SHOOTER_FIRE:
                 return this.getRightUpperTrigger();
+            case Controller2013.EXTRA_BUTTON_1:
+                return this.getButtonX();
             default:
                 return false;
         }
