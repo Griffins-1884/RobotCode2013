@@ -31,12 +31,13 @@ public class FrisbeeSimulation {
     }
     public static void simulateFrisbee(FrisbeeSimulationClient client, Vector displacement, Vector velocity, double angleOfAttackFromHorizontal, double angleOfRollAboutVelocity,                                                              double deltaTime) {
                                 // The client asking for a simulation,initial displacement,initial velocity,initial angle of attack from horiz., initial angle of roll about velocity (positive is counterclockwise from robot's perspective), change in time between steps where lower increases accuracy
-        Vector acceleration = null;
-        Vector force = null;
+        Vector acceleration = new Vector(new double[] {0.0, 0.0, 0.0});
+        Vector force = new Vector(new double[] {0.0, 0.0, 0.0});
             Vector forceGravity = new Vector(new double[] {0, 0, GRAVITY * FRISBEE_MASS});
             Vector forceLift = null;
             Vector forceDrag = null;
         while(client.registerDisplacement(displacement)) {
+            
             double angleOfAttackFromVelocity = angleOfAttackFromHorizontal - MathUtils.atan(velocity.getElement(2) / Math.sqrt(velocity.getElement(0)*velocity.getElement(0)+velocity.getElement(1)*velocity.getElement(1)));
             double coefficientOfLift = CL0 + CLA * angleOfAttackFromVelocity;
             double coefficientOfDrag = CD0 + CDA * angleOfAttackFromVelocity * angleOfAttackFromVelocity;
