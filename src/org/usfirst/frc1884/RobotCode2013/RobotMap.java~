@@ -58,10 +58,10 @@ public class RobotMap {
         chassisBackLightSensor = new DigitalInput(1, 3);
 	LiveWindow.addSensor("Chassis", "Back Light Sensor", chassisBackLightSensor);
         
-        feederFeederIntake = new Talon(1, 10);
+        feederFeederIntake = new Talon(1, 7);
 	LiveWindow.addActuator("Feeder", "Feeder Intake", (Talon) feederFeederIntake);
         
-        feederFeederArmMotor = new Talon(1, 7);
+        feederFeederArmMotor = new Talon(1, 10);
 	LiveWindow.addActuator("Feeder", "Feeder Arm Motor", (Talon) feederFeederArmMotor);
         
         climberLeftClimbingPiston = new DoubleSolenoid(1, 1, 2);      

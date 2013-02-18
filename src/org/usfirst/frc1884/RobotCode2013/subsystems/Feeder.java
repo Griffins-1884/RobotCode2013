@@ -18,18 +18,21 @@ public class Feeder extends Subsystem {
     }
     
     public void setFeederIntakeSpeed(double value) {
-        feederIntake.set(value); //@todo: check this isn't inverted
+        feederIntake.set(-value);
     }
     
     public void extendArm() {
-        feederArmMotor.set(-0.1);
+        feederArmMotor.set(-0.2);
+        System.out.println("-0.2");
     }
     
     public void retractArm() {
-        feederArmMotor.set(0.1);
+        feederArmMotor.set(1.0);
+        System.out.println("1.0");
     }
     
     public void armOff() {
         feederArmMotor.set(0.0);
+        System.out.println("0.0");
     }
 }
