@@ -115,7 +115,7 @@ public class  SafeAutonomousCommand extends Command {
                 timeStartedStrafing = currentTime;
             }
             if(currentTime <= timeStartedStrafing + 4000) {
-                Robot.chassis.driveMecanumNormalized(forwardsValue, 0.5, -gyroValue * GYRO_DAMPING);
+                Robot.chassis.driveMecanumNormalized(forwardsValue, 0.5, 0); //removed "-gyroValue * GYRO_DAMPING" from third argument
                 if(!firingPistonExtended) {
                     if(currentTime > timeOfLastPistonFire + 300) {
                         timeOfLastPistonFire = currentTime;
