@@ -64,9 +64,7 @@ public class ShootingPitchControl extends Subsystem implements PIDSource, PIDOut
         return pitchEncoder.getDistance() + initialWinchLength;
     }
     public void setInitialWinchLength(double d) {
-        if(initialWinchLength == -1.0) {
-            initialWinchLength = d;
-        }
+        initialWinchLength = d;
     }
     public void pidWrite(double d) {
         this.setPitchChangeSpeed(d);

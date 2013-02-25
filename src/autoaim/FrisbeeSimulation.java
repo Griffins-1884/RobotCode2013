@@ -74,9 +74,9 @@ public class FrisbeeSimulation {
                                                  forceLiftFrisbeeZComponent});
             
             double forceDragMagnitude = 0.5 * DENSITY_OF_AIR * velocityMagnitude * velocityMagnitude * AREA_OF_FRISBEE * coefficientOfDrag;
-            double forceDragFrisbeeXComponent = -forceDragMagnitude * Math.sin(angleOfRollAboutVelocity);
-            double forceDragFrisbeeYComponent = -forceDragMagnitude * Math.cos(angleOfRollAboutVelocity) * Math.cos(angleOfAttackFromHorizontal);
-            double forceDragFrisbeeZComponent = forceDragMagnitude * Math.cos(angleOfRollAboutVelocity) * Math.sin(angleOfAttackFromHorizontal);
+            double forceDragFrisbeeXComponent = 0.0;
+            double forceDragFrisbeeYComponent = -forceDragMagnitude * Math.cos(angleOfAttackFromHorizontal);
+            double forceDragFrisbeeZComponent = -forceDragMagnitude * Math.sin(angleOfAttackFromHorizontal);
             forceDrag = new Vector(new double[] {forceDragFrisbeeXComponent * Math.sin(horizontalAngleOfVelocity) + forceDragFrisbeeYComponent * Math.cos(horizontalAngleOfVelocity),
                                                  -forceDragFrisbeeXComponent * Math.cos(horizontalAngleOfVelocity) + forceDragFrisbeeYComponent * Math.sin(horizontalAngleOfVelocity),
                                                  forceDragFrisbeeZComponent});
@@ -89,11 +89,11 @@ public class FrisbeeSimulation {
             
             
             //****************  Deal with rotational motion ****************
-            angleOfAttackFromHorizontalAcceleration = (CM0 + CMA * angleOfAttackFromVelocity + CMQ * angleOfAttackFromHorizontalVelocity) * 0.5 * DENSITY_OF_AIR * velocityMagnitude * velocityMagnitude * AREA_OF_FRISBEE * DIAMETER_OF_FRISBEE;
+            angleOfAttackFromHorizontalAcceleration = (CM0 + CMA * angleOfAttackFromVelocity + CMQ * angleOfAttackFromHorizontalVelocity) * 0.5 * DENSITY_OF_AIR * velocityMagnitude * velocityMagnitude * AREA_OF_FRISBEE * DIAMETER_OF_FRISBEE;// / NONSYMMETRIC_ROTATIONAL_INERTIA;
             angleOfAttackFromHorizontal = angleOfAttackFromHorizontal + angleOfAttackFromHorizontalVelocity * deltaTime + 0.5 * angleOfAttackFromHorizontalAcceleration * deltaTime * deltaTime;
             angleOfAttackFromHorizontalVelocity = angleOfAttackFromHorizontalVelocity + angleOfAttackFromHorizontalAcceleration * deltaTime;
             
-            angleOfRollAboutVelocityAcceleration = (CRR * RADIUS_OF_FRISBEE + CRP * angleOfRollAboutVelocityVelocity) * 0.5 * DENSITY_OF_AIR * velocityMagnitude * velocityMagnitude * AREA_OF_FRISBEE * DIAMETER_OF_FRISBEE;
+            angleOfRollAboutVelocityAcceleration = (CRR * RADIUS_OF_FRISBEE + CRP * angleOfRollAboutVelocityVelocity) * 0.5 * DENSITY_OF_AIR * velocityMagnitude * velocityMagnitude * AREA_OF_FRISBEE * DIAMETER_OF_FRISBEE;// / NONSYMMETRIC_ROTATIONAL_INERTIA;
             angleOfRollAboutVelocity = angleOfRollAboutVelocity + angleOfRollAboutVelocityVelocity * deltaTime + 0.5 * angleOfRollAboutVelocityAcceleration * deltaTime * deltaTime;
             angleOfRollAboutVelocityVelocity = angleOfRollAboutVelocityVelocity + angleOfRollAboutVelocityAcceleration * deltaTime;
         }

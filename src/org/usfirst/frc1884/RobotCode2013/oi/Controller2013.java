@@ -15,7 +15,8 @@ public interface Controller2013 {
                             FEEDER_INTAKE = 2,
                             CLIMBER_EXTEND = 4,
                             AUTOAIM_TRACK = 5,
-                            EXTRA_BUTTON_1 = 6;
+                            EXTRA_BUTTON_1 = 6,
+                            EXTRA_BUTTON_2 = 7;
     
     public double getAnalog(int analogConstant);
     public boolean getBoolean(int digitalConstant);

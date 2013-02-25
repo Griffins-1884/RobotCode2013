@@ -18,14 +18,12 @@ public class Climber extends Subsystem {
     }
     
     public void extendClimber() {
-        if(true) return; // @URGENT: remove
-        leftClimbingPiston.set(DoubleSolenoid.Value.kForward); // @todo: check that these are the right direction (all four)
-        rightClimbingPiston.set(DoubleSolenoid.Value.kForward);
+        leftClimbingPiston.set(DoubleSolenoid.Value.kReverse);
+        rightClimbingPiston.set(DoubleSolenoid.Value.kReverse);
     }
     
     public void retractClimber() {
-        if(true) return; // @URGENT: remove
-        leftClimbingPiston.set(DoubleSolenoid.Value.kReverse);
-        rightClimbingPiston.set(DoubleSolenoid.Value.kReverse);
+        leftClimbingPiston.set(DoubleSolenoid.Value.kForward);
+        rightClimbingPiston.set(DoubleSolenoid.Value.kForward);
     }
 }

@@ -24,11 +24,15 @@ public class  RetractFeederArm extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.feeder.retractArm();
         Robot.feeder.setFeederIntakeSpeed(0.0);
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if(Robot.feeder.getUpperSwitch()) {
+            Robot.feeder.armOff();
+        } else {
+            Robot.feeder.retractArm();
+        }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

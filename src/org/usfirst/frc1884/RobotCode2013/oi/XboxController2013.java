@@ -5,10 +5,13 @@ public class XboxController2013 extends XboxController implements Controller2013
     public double getAnalog(int analogConstant) {
         switch(analogConstant) {
             case Controller2013.DRIVE_FORWARD:
+                System.out.println("forward: " + this.getLeftY());
                 return this.getLeftY();
             case Controller2013.DRIVE_RIGHT:
+                System.out.println("right: " + this.getLeftX());
                 return this.getLeftX();
             case Controller2013.DRIVE_COUNTERCLOCKWISE:
+                System.out.println("ccl: " + this.getRightX());
                 return this.getRightX();
             case Controller2013.SHOOTER_PITCH:
                 return this.getRightY();
@@ -30,6 +33,8 @@ public class XboxController2013 extends XboxController implements Controller2013
                 return this.getRightUpperTrigger();
             case Controller2013.EXTRA_BUTTON_1:
                 return this.getButtonX();
+            case Controller2013.EXTRA_BUTTON_2:
+                return this.getButtonY();
             default:
                 return false;
         }

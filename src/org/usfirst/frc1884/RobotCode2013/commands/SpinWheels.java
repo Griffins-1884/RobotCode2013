@@ -32,6 +32,11 @@ public class  SpinWheels extends Command {
     protected void execute() {
         double targetSpeed = Robot.oi.driverController.getAnalog(Controller2013.SHOOTER_SPEED);
         Robot.shooter.setShootingMotors(FIRST_WHEEL_RATIO * targetSpeed, targetSpeed);
+        if(targetSpeed < 0.1) {
+            Robot.other.startCompressor();
+        } else {
+            Robot.other.stopCompressor();
+        }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

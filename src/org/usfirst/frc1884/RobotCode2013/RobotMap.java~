@@ -24,6 +24,8 @@ public class RobotMap {
     public static DigitalInput chassisBackLightSensor;
     public static SpeedController feederFeederIntake;
     public static SpeedController feederFeederArmMotor;
+    public static DigitalInput feederUpperLimitSwitch;
+    public static DigitalInput feederLowerLimitSwitch;
     public static DoubleSolenoid climberLeftClimbingPiston;
     public static DoubleSolenoid climberRightClimbingPiston;
     public static Compressor otherCompressor;
@@ -63,6 +65,12 @@ public class RobotMap {
         
         feederFeederArmMotor = new Talon(1, 10);
 	LiveWindow.addActuator("Feeder", "Feeder Arm Motor", (Talon) feederFeederArmMotor);
+        
+        feederUpperLimitSwitch = new DigitalInput(1, 6);
+	LiveWindow.addSensor("Feeder", "Upper Limit Switch", feederUpperLimitSwitch);
+        
+        feederLowerLimitSwitch = new DigitalInput(1, 7);
+	LiveWindow.addSensor("Feeder", "Lower Limit Switch", feederLowerLimitSwitch);
         
         climberLeftClimbingPiston = new DoubleSolenoid(1, 1, 2);      
 	
