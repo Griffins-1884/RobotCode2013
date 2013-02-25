@@ -97,7 +97,8 @@ public class  SafeAutonomousCommand extends Command {
             if(hasSeenCenterLine) {
                 Robot.chassis.driveMecanumNormalized(0.2, 0, 0);
             } else {
-                Robot.chassis.driveMecanumNormalized(-Math.cos(backWardsAngle), -Math.sin(backWardsAngle), -gyroValue * GYRO_DAMPING);
+                Robot.chassis.driveMecanumNormalized(-Math.cos(backWardsAngle), -Math.sin(backWardsAngle), 0);//removed "-gyroValue * GYRO_DAMPING" from third argument
+                if(!firingPistonExtended) {
             }
         } else if(majorState == PICKING_UP_CENTERLINE_FRISBEES) {
             Robot.shooter.setShootingMotors(0.8, 1.0);
