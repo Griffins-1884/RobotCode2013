@@ -25,14 +25,10 @@ public class  ExtendFeederArm extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.feeder.setFeederIntakeSpeed(1.0);
+        Robot.feeder.extendArm();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(Robot.feeder.getLowerSwitch()) {
-            Robot.feeder.armOff();
-        } else {
-            Robot.feeder.extendArm();
-        }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -40,13 +36,13 @@ public class  ExtendFeederArm extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.feeder.armOff();
+        Robot.feeder.retractArm();
         Robot.feeder.setFeederIntakeSpeed(0.0);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        Robot.feeder.armOff();
+        Robot.feeder.retractArm();
         Robot.feeder.setFeederIntakeSpeed(0.0);
     }
 }

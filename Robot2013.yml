@@ -209,67 +209,7 @@ Children:
           name: Output Channel (PWM)
           validators: *id005
           value: '7'
-    - Name: Feeder Arm Motor
-      Base: Speed Controller
-      Children: []
-      Properties:
-        Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: '1'
-          name: Output Module (Digital)
-          validators: *id002
-          value: '1'
-        Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id003
-          default: Victor
-          name: Type
-          validators: null
-          value: Talon
-        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id004
-          default: '1'
-          name: Output Channel (PWM)
-          validators: *id005
-          value: '10'
-    - Name: Upper Limit Switch
-      Base: Digital Input
-      Children: []
-      Properties:
-        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Input Channel (Digital)
-          validators: *id007
-          value: '6'
-        Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: '1'
-          name: Input Module (Digital)
-          validators: *id009
-          value: '1'
-    - Name: Lower Limit Switch
-      Base: Digital Input
-      Children: []
-      Properties:
-        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id006
-          default: '1'
-          name: Input Channel (Digital)
-          validators: *id007
-          value: '7'
-        Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
-          default: '1'
-          name: Input Module (Digital)
-          validators: *id009
-          value: '1'
-    Properties:
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: RetractFeederArm}
-  - Name: Climber
-    Base: Subsystem
-    Children:
-    - Name: Left Climbing Piston
+    - Name: FeederArmPiston
       Base: Double Solenoid
       Children: []
       Properties:
@@ -278,7 +218,7 @@ Children:
           default: '1'
           name: Forward Channel (Solenoid)
           validators: &id011 [Solenoid]
-          value: '1'
+          value: '5'
         Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: &id012 ['1', '2']
           default: '1'
@@ -296,6 +236,40 @@ Children:
           default: '1'
           name: Reverse Channel (Solenoid)
           validators: &id017 [Solenoid]
+          value: '6'
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: RetractFeederArm}
+  - Name: Climber
+    Base: Subsystem
+    Children:
+    - Name: Left Climbing Piston
+      Base: Double Solenoid
+      Children: []
+      Properties:
+        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '1'
+          name: Forward Channel (Solenoid)
+          validators: *id011
+          value: '1'
+        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id012
+          default: '1'
+          name: Forward Module (Solenoid)
+          validators: *id013
+          value: '1'
+        Reverse Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id014
+          default: '1'
+          name: Reverse Module (Solenoid)
+          validators: *id015
+          value: '1'
+        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id016
+          default: '1'
+          name: Reverse Channel (Solenoid)
+          validators: *id017
           value: '2'
     - Name: Right Climbing Piston
       Base: Double Solenoid

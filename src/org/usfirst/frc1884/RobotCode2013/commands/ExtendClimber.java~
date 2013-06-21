@@ -14,6 +14,7 @@ import org.usfirst.frc1884.RobotCode2013.Robot;
  *
  */
 public class  ExtendClimber extends Command {
+    private boolean isExtended = false;
     public ExtendClimber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -24,7 +25,13 @@ public class  ExtendClimber extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.climber.extendClimber();
+        if(isExtended) {
+            Robot.climber.retractClimber();
+            isExtended = false;
+        } else {
+            Robot.climber.extendClimber();
+            isExtended = true;
+        }
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -35,11 +42,9 @@ public class  ExtendClimber extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.climber.retractClimber();
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        Robot.climber.retractClimber();
     }
 }

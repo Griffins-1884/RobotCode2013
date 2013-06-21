@@ -58,12 +58,12 @@ public class  SafeAutonomousCommand extends Command {
                 System.out.println("spinning up wheels");
                 timeSpinUpStarted = System.currentTimeMillis();
                 Robot.shooter.setShootingMotors(0.8, 1.0);
-            } else if(currentTime > timeSpinUpStarted + 3000) {
+            } else if(currentTime > timeSpinUpStarted + 4000) {
                 majorState = SHOOTING_ORIGINAL_THREE_FRISBEES;
             }
         } else if(majorState == SHOOTING_ORIGINAL_THREE_FRISBEES) {
             if(!firingPistonExtended) {
-                if(currentTime > timeOfLastPistonFire + 1000) {
+                if(currentTime > timeOfLastPistonFire + 3000) {
                     timeOfLastPistonFire = currentTime;
                     Robot.storageBox.extendFiringPiston();
                     frisbeesLeft--;
@@ -81,11 +81,7 @@ public class  SafeAutonomousCommand extends Command {
             }
         } else if(majorState == MOVING_BACK_TO_CENTER_LINE) {
             Robot.shooter.setShootingMotors(0.0, 0.0);
-            if(Robot.feeder.getLowerSwitch()) {
-                Robot.feeder.armOff();
-            } else {
-                Robot.feeder.extendArm();
-            }
+            Robot.feeder.extendArm();
             
             if(Robot.chassis.getBackLightSensor()) {
                 hasSeenCenterLine = true;

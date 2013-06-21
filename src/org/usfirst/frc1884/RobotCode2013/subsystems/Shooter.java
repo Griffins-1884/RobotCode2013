@@ -20,6 +20,7 @@ public class Shooter extends Subsystem {
     }
     
     public void setShootingMotors(double firstWheelSpeed, double secondWheelSpeed) {
+//        System.out.println("speeds: " + firstWheelSpeed + " and " + secondWheelSpeed);
         firstWheel.set(firstWheelSpeed);
         secondWheel.set(secondWheelSpeed);
     }
